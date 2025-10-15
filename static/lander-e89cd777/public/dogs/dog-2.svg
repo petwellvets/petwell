@@ -1,0 +1,24 @@
+<svg width="350" height="350" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Playful dog illustration -->
+  <g opacity="0.12">
+    <!-- Body -->
+    <ellipse cx="180" cy="200" rx="70" ry="90" fill="#FF8E72" transform="rotate(-15 180 200)"/>
+    <!-- Head -->
+    <circle cx="220" cy="120" r="60" fill="#FF8E72"/>
+    <!-- Ears -->
+    <ellipse cx="190" cy="95" rx="20" ry="45" fill="#FF8E72" transform="rotate(-30 190 95)"/>
+    <ellipse cx="250" cy="100" rx="20" ry="40" fill="#FF8E72" transform="rotate(25 250 100)"/>
+    <!-- Snout -->
+    <ellipse cx="235" cy="135" rx="30" ry="20" fill="#FFB5A0"/>
+    <!-- Nose -->
+    <circle cx="240" cy="140" r="10" fill="#2C2826"/>
+    <!-- Eyes -->
+    <circle cx="210" cy="115" r="7" fill="#2C2826"/>
+    <circle cx="235" cy="110" r="7" fill="#2C2826"/>
+    <!-- Tongue -->
+    <ellipse cx="245" cy="155" rx="12" ry="18" fill="#E85D5D"/>
+    <!-- Paws -->
+    <ellipse cx="160" cy="270" rx="15" ry="20" fill="#FF8E72"/>
+    <ellipse cx="200" cy="280" rx="15" ry="20" fill="#FF8E72"/>
+  </g>
+</svg>

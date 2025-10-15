@@ -1,0 +1,27 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cute sitting dog illustration -->
+  <g opacity="0.15">
+    <!-- Body -->
+    <ellipse cx="200" cy="250" rx="80" ry="100" fill="#FF8E72"/>
+    <!-- Head -->
+    <circle cx="200" cy="150" r="70" fill="#FF8E72"/>
+    <!-- Ears -->
+    <ellipse cx="160" cy="120" rx="25" ry="50" fill="#FF8E72" transform="rotate(-20 160 120)"/>
+    <ellipse cx="240" cy="120" rx="25" ry="50" fill="#FF8E72" transform="rotate(20 240 120)"/>
+    <!-- Snout -->
+    <ellipse cx="200" cy="170" rx="35" ry="25" fill="#FFB5A0"/>
+    <!-- Nose -->
+    <ellipse cx="200" cy="175" rx="15" ry="12" fill="#2C2826"/>
+    <!-- Eyes -->
+    <circle cx="180" cy="145" r="8" fill="#2C2826"/>
+    <circle cx="220" cy="145" r="8" fill="#2C2826"/>
+    <!-- Eye highlights -->
+    <circle cx="182" cy="143" r="3" fill="white"/>
+    <circle cx="222" cy="143" r="3" fill="white"/>
+    <!-- Legs -->
+    <rect x="170" y="320" width="20" height="60" rx="10" fill="#FF8E72"/>
+    <rect x="210" y="320" width="20" height="60" rx="10" fill="#FF8E72"/>
+    <!-- Tail -->
+    <path d="M 280 230 Q 320 220 330 250" stroke="#FF8E72" stroke-width="20" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+<svg width="250" height="250" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cute small dog -->
+  <g opacity="0.2">
+    <!-- Body -->
+    <ellipse cx="125" cy="160" rx="55" ry="65" fill="#FF8E72"/>
+    <!-- Head -->
+    <circle cx="125" cy="100" r="50" fill="#FF8E72"/>
+    <!-- Ears - floppy -->
+    <ellipse cx="95" cy="90" rx="18" ry="35" fill="#FFB5A0" transform="rotate(-15 95 90)"/>
+    <ellipse cx="155" cy="90" rx="18" ry="35" fill="#FFB5A0" transform="rotate(15 155 90)"/>
+    <!-- Eyes -->
+    <circle cx="110" cy="95" r="6" fill="#2C2826"/>
+    <circle cx="140" cy="95" r="6" fill="#2C2826"/>
+    <!-- Snout -->
+    <ellipse cx="125" cy="110" rx="22" ry="16" fill="#FFB5A0"/>
+    <!-- Nose -->
+    <circle cx="125" cy="112" r="7" fill="#2C2826"/>
+    <!-- Spots -->
+    <circle cx="105" cy="75" r="8" fill="#2C2826" opacity="0.3"/>
+    <ellipse cx="145" cy="165" rx="15" ry="20" fill="#2C2826" opacity="0.3"/>
+  </g>
+</svg>
