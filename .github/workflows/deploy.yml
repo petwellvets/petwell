@@ -39,13 +39,18 @@ jobs:
           cd static/lander-e89cd777
           npm run build
 
+      - name: Prepare deployment structure
+        run: |
+          mkdir -p deploy/static/lander-e89cd777
+          cp -r static/lander-e89cd777/dist/* deploy/static/lander-e89cd777/
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: static/lander-e89cd777/dist
+          path: deploy
 
   deploy:
     environment:
