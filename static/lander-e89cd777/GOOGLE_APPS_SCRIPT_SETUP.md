@@ -47,17 +47,27 @@ function doPost(e) {
       data.note || ''
     ]);
 
-    // Return success response
+    // Return success response with CORS headers
     return ContentService
       .createTextOutput(JSON.stringify({ success: true, message: 'Data saved successfully' }))
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
+    // Log the error
+    console.error('Error in doPost:', error);
+
     // Return error response
     return ContentService
       .createTextOutput(JSON.stringify({ success: false, message: error.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+// Handle OPTIONS request for CORS preflight (if needed)
+function doOptions(e) {
+  return ContentService
+    .createTextOutput('')
+    .setMimeType(ContentService.MimeType.TEXT);
 }
 
 // Test function to verify setup
@@ -105,26 +115,43 @@ function testSetup() {
    https://script.google.com/macros/s/AKfycby.../exec
    ```
 
-## Step 5: Add Web App URL to Your Project
+## Step 4.5: Update Existing Script (If Already Deployed)
 
-1. Navigate to your lander directory:
-   ```bash
-   cd /Users/azymuth/www/petwell/www/petwell.github.io/static/lander-e89cd777
+**If you already created and deployed the Apps Script**, you need to update it with the new code above that includes proper response handling and CORS support. Then:
+
+1. Go to your existing Apps Script project
+2. Replace the code with the updated version above
+3. Click Save
+4. **Important**: You need to create a NEW deployment
+   - Click "Deploy" → "New deployment"
+   - Follow the same steps as before
+   - You'll get a NEW Web App URL
+5. Update the GitHub Secret with the new URL (see Step 6 below)
+
+## Step 5: Add Web App URL to Your Project (SKIP THIS - Use Step 6 Instead)
+
+~~This step is for local development only. For GitHub Pages deployment, skip to Step 6.~~
+
+## Step 6: Add Web App URL as GitHub Secret
+
+Since `.env` files are gitignored and won't work on GitHub Pages, we need to add the URL as a GitHub Secret:
+
+1. Go to your repository settings:
+   ```
+   https://github.com/petwellvets/petwellvets.github.io/settings/secrets/actions
    ```
 
-2. Create a `.env` file (or edit if it exists):
-   ```bash
-   echo "VITE_GOOGLE_SCRIPT_URL=YOUR_WEB_APP_URL_HERE" > .env
-   ```
+2. Click **"New repository secret"**
 
-   Replace `YOUR_WEB_APP_URL_HERE` with the URL you copied
+3. Fill in:
+   - **Name**: `VITE_GOOGLE_SCRIPT_URL`
+   - **Secret**: Paste your Web App URL (e.g., `https://script.google.com/macros/s/AKfycby.../exec`)
 
-3. The `.env` file should look like:
-   ```
-   VITE_GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/AKfycby.../exec
-   ```
+4. Click **"Add secret"**
 
-## Step 6: Rebuild and Deploy
+The GitHub Actions workflow will automatically inject this as an environment variable during the build.
+
+## Step 7: Trigger Deployment
 
 ```bash
 npm run build

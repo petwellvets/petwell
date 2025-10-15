@@ -17,26 +17,23 @@ interface FormData {
  */
 export async function submitToGoogleSheets(data: FormData): Promise<{ success: boolean; message: string }> {
   try {
-    // For now, we'll use a simple fetch to Google Forms or Apps Script
-    // You'll need to set up a Google Apps Script Web App that accepts POST requests
-
-    // Placeholder: In production, replace with your Google Apps Script URL
+    // Get the Google Apps Script URL from environment variable
     const scriptUrl = (import.meta as any).env?.VITE_GOOGLE_SCRIPT_URL as string | undefined;
 
     if (!scriptUrl) {
       console.warn('Google Sheets integration not configured. Form data:', data);
-      // Fallback: just log for development
+      // Development fallback
       return {
-        success: true,
-        message: 'Thanks! We\'ve received your information. (Dev mode - not actually saved)'
+        success: false,
+        message: 'Form submission is not configured yet. Please contact support.'
       };
     }
 
-    await fetch(scriptUrl, {
+    // Submit to Google Apps Script
+    const response = await fetch(scriptUrl, {
       method: 'POST',
-      mode: 'no-cors', // Required for Google Apps Script
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/plain', // Use text/plain to avoid CORS preflight
       },
       body: JSON.stringify({
         ...data,
@@ -44,12 +41,20 @@ export async function submitToGoogleSheets(data: FormData): Promise<{ success: b
       })
     });
 
-    // Note: no-cors mode means we can't read the response
-    // We assume success if no error is thrown
-    return {
-      success: true,
-      message: 'Thanks for joining! We\'ll be in touch soon.'
-    };
+    // Try to parse the response
+    const result = await response.json();
+
+    if (result.success) {
+      return {
+        success: true,
+        message: 'Thanks for joining! We\'ll be in touch soon.'
+      };
+    } else {
+      return {
+        success: false,
+        message: result.message || 'Something went wrong. Please try again.'
+      };
+    }
 
   } catch (error) {
     console.error('Error submitting to Google Sheets:', error);

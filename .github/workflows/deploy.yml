@@ -35,6 +35,8 @@ jobs:
           npm ci
 
       - name: Build
+        env:
+          VITE_GOOGLE_SCRIPT_URL: ${{ secrets.VITE_GOOGLE_SCRIPT_URL }}
         run: |
           cd static/lander-e89cd777
           npm run build
