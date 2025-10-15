@@ -20,7 +20,7 @@ static/
 
 This repository uses GitHub Actions to automatically build and deploy landing pages to GitHub Pages.
 
-Changes pushed to `main` will trigger a deployment.
+Changes pushed to `master` will trigger a deployment.
 
 ## Adding New Landing Pages
 
