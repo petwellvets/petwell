@@ -1,0 +1,21 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Happy dog face -->
+  <g opacity="0.18">
+    <!-- Head circle -->
+    <circle cx="150" cy="150" r="90" fill="#FF8E72"/>
+    <!-- Ears -->
+    <ellipse cx="100" cy="120" rx="30" ry="60" fill="#FFB5A0" transform="rotate(-25 100 120)"/>
+    <ellipse cx="200" cy="120" rx="30" ry="60" fill="#FFB5A0" transform="rotate(25 200 120)"/>
+    <!-- Eyes -->
+    <circle cx="125" cy="140" r="10" fill="#2C2826"/>
+    <circle cx="175" cy="140" r="10" fill="#2C2826"/>
+    <circle cx="127" cy="138" r="4" fill="white"/>
+    <circle cx="177" cy="138" r="4" fill="white"/>
+    <!-- Snout -->
+    <ellipse cx="150" cy="170" rx="40" ry="30" fill="#FFB5A0"/>
+    <!-- Nose -->
+    <ellipse cx="150" cy="165" rx="12" ry="10" fill="#2C2826"/>
+    <!-- Mouth - happy smile -->
+    <path d="M 130 180 Q 150 195 170 180" stroke="#2C2826" stroke-width="3" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>
