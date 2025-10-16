@@ -33,17 +33,23 @@ jobs:
           echo "${{ secrets.DO_WEB_SSH_KEY }}" > ~/.ssh/do_web
           chmod 600 ~/.ssh/do_web
           ssh-keyscan -H ${{ secrets.DO_WEB_HOST }} >> ~/.ssh/known_hosts
+          chmod 700 ~/.ssh
+
+      - name: Start SSH Agent
+        run: |
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/do_web
 
       - name: Run deployment script
         run: |
-          ssh -i ~/.ssh/do_web root@${{ secrets.DO_WEB_HOST }} '/root/deploy-petwell.sh'
+          ssh -o StrictHostKeyChecking=no root@${{ secrets.DO_WEB_HOST }} '/root/deploy-petwell.sh'
 
       - name: Deploy files
         run: |
-          rsync -avz --delete -e "ssh -i ~/.ssh/do_web" \
+          rsync -avz --delete \
             dist/ \
             root@${{ secrets.DO_WEB_HOST }}:/var/www/petwell/
 
       - name: Verify deployment
         run: |
-          ssh -i ~/.ssh/do_web root@${{ secrets.DO_WEB_HOST }} 'ls -la /var/www/petwell'
+          ssh root@${{ secrets.DO_WEB_HOST }} 'ls -la /var/www/petwell'
