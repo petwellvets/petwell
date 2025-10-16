@@ -18,19 +18,14 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: static/lander-e89cd777/package-lock.json
 
       - name: Install dependencies
-        run: |
-          cd static/lander-e89cd777
-          npm ci
+        run: npm ci
 
       - name: Build
         env:
           VITE_GOOGLE_SCRIPT_URL: ${{ secrets.VITE_GOOGLE_SCRIPT_URL }}
-        run: |
-          cd static/lander-e89cd777
-          npm run build
+        run: npm run build
 
       - name: Setup SSH
         run: |
@@ -46,7 +41,7 @@ jobs:
       - name: Deploy files
         run: |
           rsync -avz --delete -e "ssh -i ~/.ssh/do_web" \
-            static/lander-e89cd777/dist/ \
+            dist/ \
             root@${{ secrets.DO_WEB_HOST }}:/var/www/petwell/
 
       - name: Verify deployment
