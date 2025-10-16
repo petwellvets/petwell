@@ -1,0 +1,54 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: static/lander-e89cd777/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd static/lander-e89cd777
+          npm ci
+
+      - name: Build
+        env:
+          VITE_GOOGLE_SCRIPT_URL: ${{ secrets.VITE_GOOGLE_SCRIPT_URL }}
+        run: |
+          cd static/lander-e89cd777
+          npm run build
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DO_WEB_SSH_KEY }}" > ~/.ssh/do_web
+          chmod 600 ~/.ssh/do_web
+          ssh-keyscan -H ${{ secrets.DO_WEB_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Run deployment script
+        run: |
+          ssh -i ~/.ssh/do_web root@${{ secrets.DO_WEB_HOST }} '/root/deploy-petwell.sh'
+
+      - name: Deploy files
+        run: |
+          rsync -avz --delete -e "ssh -i ~/.ssh/do_web" \
+            static/lander-e89cd777/dist/ \
+            root@${{ secrets.DO_WEB_HOST }}:/var/www/petwell/
+
+      - name: Verify deployment
+        run: |
+          ssh -i ~/.ssh/do_web root@${{ secrets.DO_WEB_HOST }} 'ls -la /var/www/petwell'
