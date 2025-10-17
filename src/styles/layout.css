@@ -221,6 +221,33 @@
   margin: 0;
 }
 
+/* Survey Section */
+.survey-section {
+  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
+  color: white;
+  text-align: center;
+  padding: var(--spacing-4xl) 0;
+}
+
+.survey-section .section-title {
+  color: white;
+  margin-bottom: var(--spacing-md);
+}
+
+.survey-section .section-subtitle {
+  color: white;
+  opacity: 0.95;
+  margin-bottom: var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+}
+
+.survey-button {
+  display: inline-block;
+  text-decoration: none;
+  font-size: var(--font-size-lg);
+  padding: var(--spacing-lg) var(--spacing-2xl);
+}
+
 /* Signup Section */
 .signup-section {
   background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
