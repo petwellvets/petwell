@@ -42,6 +42,10 @@ jobs:
             dist/ \
             root@${{ secrets.DO_WEB_HOST }}:/var/www/petwell/
 
+      - name: Fix permissions
+        run: |
+          ssh root@${{ secrets.DO_WEB_HOST }} 'chown -R www-data:www-data /var/www/petwell && chmod -R 755 /var/www/petwell'
+
       - name: Verify deployment
         run: |
           ssh root@${{ secrets.DO_WEB_HOST }} 'ls -la /var/www/petwell'
