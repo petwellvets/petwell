@@ -28,17 +28,9 @@ jobs:
         run: npm run build
 
       - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DO_WEB_SSH_KEY }}" | tr -d '\n' | base64 -d > ~/.ssh/do_web
-          chmod 600 ~/.ssh/do_web
-          ssh-keyscan -H ${{ secrets.DO_WEB_HOST }} >> ~/.ssh/known_hosts
-          chmod 700 ~/.ssh
-
-      - name: Start SSH Agent
-        run: |
-          eval "$(ssh-agent -s)"
-          ssh-add ~/.ssh/do_web
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DO_WEB_SSH_KEY_RAW }}
 
       - name: Run deployment script
         run: |
