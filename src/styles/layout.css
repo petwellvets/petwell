@@ -226,7 +226,8 @@
   background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
   color: white;
   text-align: center;
-  padding: var(--spacing-4xl) 0;
+  padding: var(--spacing-3xl) 0;
+  min-height: auto;
 }
 
 .survey-section .section-title {
@@ -242,10 +243,23 @@
 }
 
 .survey-button {
+  background-color: white;
+  color: var(--color-accent);
   display: inline-block;
   text-decoration: none;
   font-size: var(--font-size-lg);
-  padding: var(--spacing-lg) var(--spacing-2xl);
+  font-weight: 600;
+  font-family: var(--font-display);
+  padding: var(--spacing-md) var(--spacing-2xl);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-base);
+}
+
+.survey-button:hover {
+  background-color: var(--color-bg-primary);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
 }
 
 /* Signup Section */
@@ -347,53 +361,42 @@
 
 /* Parallax Containers */
 .parallax-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 1;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 2;
 }
 
 .parallax-layer {
   position: absolute;
-  width: 100%;
-  height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   will-change: transform;
+  opacity: 0.12;
 }
 
-.parallax-dog-1 {
-  background-image: url('/dogs/dog-1.svg');
-  right: -10%;
+.parallax-vet-left {
+  background-image: url('/dogs/vet-dog.svg');
+  left: 5%;
   top: 10%;
-  width: 400px;
-  height: 400px;
-}
-
-.parallax-dog-2 {
-  background-image: url('/dogs/dog-2.svg');
-  left: -5%;
-  bottom: 20%;
-  width: 350px;
+  width: 300px;
   height: 350px;
 }
 
-.parallax-dog-3 {
-  background-image: url('/dogs/dog-3.svg');
-  right: -5%;
-  top: 15%;
-  width: 300px;
-  height: 300px;
-}
-
-.parallax-dog-4 {
-  background-image: url('/dogs/dog-4.svg');
-  left: 5%;
-  top: 30%;
-  width: 250px;
-  height: 250px;
+.parallax-dog-right {
+  background-image: url('/dogs/happy-dog.svg');
+  right: 5%;
+  top: 20%;
+  width: 280px;
+  height: 320px;
 }

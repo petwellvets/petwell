@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(textutil:*)",
+      "Read(//Users/azymuth/www/petwell/**)",
+      "Bash(mkdir:*)",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(gh repo create:*)",
+      "Bash(openssl rand:*)",
+      "Bash(npm run build)",
+      "Bash(git commit:*)",
+      "Bash(gh api:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh repo list:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(git push:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run watch:*)",
+      "Bash(ssh-keygen:*)",
+      "Bash(ssh:*)",
+      "Bash(gh run view:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

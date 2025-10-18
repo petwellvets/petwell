@@ -3,20 +3,25 @@
  */
 
 export function initParallax() {
-  const parallaxLayers = document.querySelectorAll<HTMLElement>('.parallax-layer');
+  const vetLeft = document.querySelector<HTMLElement>('.parallax-vet-left');
+  const dogRight = document.querySelector<HTMLElement>('.parallax-dog-right');
 
-  if (!parallaxLayers.length) return;
+  if (!vetLeft && !dogRight) return;
 
   const handleScroll = () => {
     const scrolled = window.pageYOffset;
 
-    parallaxLayers.forEach((layer, index) => {
-      // Different speed for each layer
-      const speed = 0.3 + (index * 0.15);
-      const yPos = -(scrolled * speed);
+    // Left vet moves slower (more subtle)
+    if (vetLeft) {
+      const yPos = scrolled * 0.2;
+      vetLeft.style.transform = `translate3d(0, ${yPos}px, 0)`;
+    }
 
-      layer.style.transform = `translate3d(0, ${yPos}px, 0)`;
-    });
+    // Right dog moves faster (more dynamic)
+    if (dogRight) {
+      const yPos = scrolled * 0.35;
+      dogRight.style.transform = `translate3d(0, ${yPos}px, 0)`;
+    }
   };
 
   // Throttle scroll events for better performance
